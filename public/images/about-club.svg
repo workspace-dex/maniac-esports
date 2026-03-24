@@ -1,0 +1,21 @@
+<svg width="900" height="1200" viewBox="0 0 900 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="1200" fill="#0D0D13"/>
+  <rect x="44" y="44" width="812" height="1112" stroke="rgba(255,255,255,0.11)"/>
+  <circle cx="664" cy="228" r="156" fill="url(#a)" opacity="0.7"/>
+  <circle cx="280" cy="814" r="220" fill="url(#b)" opacity="0.7"/>
+  <path d="M214 936C278 770 394 606 522 424C589 327 653 229 714 140L772 184C713 275 651 370 585 467C459 651 349 807 290 960L214 936Z" fill="#F0F0F8" fill-opacity="0.08"/>
+  <path d="M188 984C255 803 370 632 500 444C565 350 630 255 694 160L744 198C681 291 618 384 554 477C425 665 313 833 248 1010L188 984Z" fill="#E040FB" fill-opacity="0.8"/>
+  <text x="84" y="142" fill="#F0F0F8" fill-opacity="0.3" font-family="Arial, sans-serif" font-size="18" letter-spacing="6">INDIA BORN CLUB</text>
+  <text x="88" y="1094" fill="#F0F0F8" font-family="Arial, sans-serif" font-size="72" font-weight="700">COMMUNITY</text>
+  <text x="88" y="1160" fill="#E040FB" font-family="Arial, sans-serif" font-size="72" font-weight="700">IS THE CORE</text>
+  <defs>
+    <radialGradient id="a" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(664 228) rotate(90) scale(156)">
+      <stop stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(280 814) rotate(90) scale(220)">
+      <stop stop-color="#E040FB"/>
+      <stop offset="1" stop-color="#E040FB" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

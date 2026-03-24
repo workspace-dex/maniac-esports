@@ -1,0 +1,8 @@
+<svg width="900" height="600" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="600" fill="#141112"/>
+  <circle cx="214" cy="188" r="152" fill="#F3C74D" fill-opacity="0.18"/>
+  <circle cx="428" cy="266" r="88" fill="#FF29EA" fill-opacity="0.24"/>
+  <circle cx="620" cy="214" r="112" fill="#00C6D8" fill-opacity="0.18"/>
+  <circle cx="736" cy="352" r="96" fill="#FF4655" fill-opacity="0.16"/>
+  <text x="450" y="486" fill="white" font-family="Arial, sans-serif" font-size="80" font-weight="700" text-anchor="middle">COMMUNITY CREATORS</text>
+</svg>

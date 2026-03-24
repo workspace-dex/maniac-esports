@@ -1,0 +1,7 @@
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#121219"/>
+  <path d="M276 178L340 144H460L524 178L604 240L556 320L500 286V636H300V286L244 320L196 240L276 178Z" fill="#070709" stroke="rgba(255,255,255,0.14)" stroke-width="6"/>
+  <rect x="338" y="350" width="124" height="124" stroke="#E040FB" stroke-width="4"/>
+  <text x="400" y="438" fill="#F0F0F8" font-family="Arial, sans-serif" font-size="78" font-weight="700" text-anchor="middle">M</text>
+  <text x="400" y="716" fill="#E040FB" font-family="Arial, sans-serif" font-size="28" letter-spacing="4" text-anchor="middle">TRAINING TEE</text>
+</svg>

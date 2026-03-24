@@ -1,0 +1,9 @@
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#11111A"/>
+  <path d="M264 180L340 140H460L536 180L620 248L568 336L510 296V640H290V296L232 336L180 248L264 180Z" fill="#E040FB" fill-opacity="0.9"/>
+  <path d="M290 296H510V356H290V296Z" fill="#0A0A0E" fill-opacity="0.65"/>
+  <path d="M290 418H510V478H290V418Z" fill="#0A0A0E" fill-opacity="0.45"/>
+  <path d="M290 540H510V600H290V540Z" fill="#0A0A0E" fill-opacity="0.28"/>
+  <text x="400" y="452" fill="#F0F0F8" fill-opacity="0.9" font-family="Arial, sans-serif" font-size="124" font-weight="700" text-anchor="middle">01</text>
+  <text x="400" y="716" fill="#F0F0F8" font-family="Arial, sans-serif" font-size="28" letter-spacing="4" text-anchor="middle">CLUB JERSEY</text>
+</svg>

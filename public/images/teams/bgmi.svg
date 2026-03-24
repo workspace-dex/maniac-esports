@@ -1,0 +1,7 @@
+<svg width="900" height="600" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="600" fill="#11111A"/>
+  <circle cx="182" cy="132" r="180" fill="#FF29EA" fill-opacity="0.18"/>
+  <rect x="116" y="250" width="668" height="212" rx="20" fill="#0A0A0E" stroke="rgba(255,255,255,0.08)"/>
+  <text x="450" y="338" fill="white" font-family="Arial, sans-serif" font-size="102" font-weight="700" text-anchor="middle">BGMI</text>
+  <text x="450" y="408" fill="#FF29EA" font-family="Arial, sans-serif" font-size="34" letter-spacing="4" text-anchor="middle">MOBILE BATTLE ROYALE</text>
+</svg>

@@ -1,0 +1,36 @@
+<svg width="1200" height="960" viewBox="0 0 1200 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="960" fill="#0A0A0E"/>
+  <rect x="36" y="36" width="1128" height="888" rx="2" stroke="rgba(255,255,255,0.12)"/>
+  <rect x="84" y="84" width="432" height="792" fill="url(#a)" opacity="0.7"/>
+  <rect x="552" y="84" width="564" height="246" fill="#11111A"/>
+  <rect x="552" y="358" width="268" height="518" fill="#12121B"/>
+  <rect x="848" y="358" width="268" height="518" fill="#171723"/>
+  <circle cx="976" cy="208" r="146" fill="url(#b)" opacity="0.8"/>
+  <circle cx="286" cy="670" r="170" fill="url(#c)" opacity="0.9"/>
+  <path d="M600 120L660 238H540L600 120Z" fill="#E040FB"/>
+  <path d="M600 226L714 460H486L600 226Z" fill="#F0F0F8" fill-opacity="0.08"/>
+  <path d="M600 312L780 706H420L600 312Z" fill="url(#d)" fill-opacity="0.9"/>
+  <text x="588" y="760" fill="#F0F0F8" fill-opacity="0.08" font-family="Arial, sans-serif" font-size="228" font-weight="700" text-anchor="middle">M</text>
+  <text x="594" y="118" fill="#E040FB" font-family="Arial, sans-serif" font-size="22" letter-spacing="7">MANIAC ESPORTS</text>
+  <text x="92" y="132" fill="#F0F0F8" fill-opacity="0.28" font-family="Arial, sans-serif" font-size="18" letter-spacing="6">COMMUNITY FIRST</text>
+  <text x="92" y="838" fill="#F0F0F8" font-family="Arial, sans-serif" font-size="86" font-weight="700">Built for</text>
+  <text x="92" y="912" fill="#E040FB" font-family="Arial, sans-serif" font-size="86" font-weight="700">teams + culture</text>
+  <defs>
+    <linearGradient id="a" x1="84" y1="84" x2="516" y2="876" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B1023"/>
+      <stop offset="1" stop-color="#060608"/>
+    </linearGradient>
+    <radialGradient id="b" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(976 208) rotate(90) scale(146)">
+      <stop stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="c" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(286 670) rotate(90) scale(170)">
+      <stop stop-color="#E040FB"/>
+      <stop offset="1" stop-color="#E040FB" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="d" x1="600" y1="312" x2="600" y2="706" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E040FB"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+</svg>

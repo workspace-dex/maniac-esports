@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(217, 70, 239, 0.13), transparent 28%),
+    radial-gradient(circle at 85% 18%, rgba(255, 255, 255, 0.06), transparent 20%),
+    #050505;
+}
+
+::selection {
+  background: rgba(217, 70, 239, 0.28);
+  color: #ffffff;
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+
+  section {
+    @apply relative;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .mask-bottom {
+    mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  }
+}

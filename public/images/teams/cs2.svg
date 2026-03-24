@@ -1,0 +1,7 @@
+<svg width="900" height="600" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="600" fill="#101317"/>
+  <circle cx="680" cy="118" r="172" fill="#00C6D8" fill-opacity="0.18"/>
+  <rect x="142" y="154" width="616" height="294" rx="24" fill="#0A0A0E" stroke="rgba(255,255,255,0.08)"/>
+  <text x="450" y="320" fill="#00C6D8" font-family="Arial, sans-serif" font-size="126" font-weight="700" text-anchor="middle">CS2</text>
+  <text x="450" y="390" fill="white" fill-opacity="0.72" font-family="Arial, sans-serif" font-size="30" letter-spacing="4" text-anchor="middle">PC COMPETITIVE DIVISION</text>
+</svg>

@@ -1,0 +1,2152 @@
+"use client";
+
+import type { MouseEvent as ReactMouseEvent } from "react";
+import { useEffect, useRef, useState } from "react";
+
+type LinkItem = {
+  label: string;
+  href: string;
+};
+
+type ServiceItem = {
+  icon: string;
+  title: string;
+  description: string;
+};
+
+type CreatorItem = {
+  avatar: string;
+  handle: string;
+  niche: string;
+  reach: string;
+  href: string;
+};
+
+type LogoItem = {
+  name: string;
+  href: string;
+  image: string;
+};
+
+type ProductItem = {
+  letter: string;
+  tag: string;
+  title: string;
+  brand: string;
+  price: string;
+  image: string;
+  href: string;
+};
+
+type CampaignItem = {
+  category: string;
+  year: string;
+  title: string;
+  description: string;
+  outcomes: string;
+  href: string;
+  image: string;
+};
+
+type PersonItem = {
+  avatar: string;
+  role: string;
+  name: string;
+  department: string;
+  href: string;
+  image: string;
+};
+
+const navigation: LinkItem[] = [
+  { label: "About", href: "#about" },
+  { label: "Creators", href: "#creators" },
+  { label: "Partners", href: "#partners" },
+  { label: "Community", href: "#community" },
+  { label: "Shop", href: "#shop" },
+  { label: "Work", href: "#work" },
+];
+
+const services: ServiceItem[] = [
+  {
+    icon: "⚔",
+    title: "Competitive Teams",
+    description:
+      "Rosters across BGMI, Valorant, CS2, and more. Structured coaching, circuit participation, and tournament representation at the national level.",
+  },
+  {
+    icon: "◉",
+    title: "Community Building",
+    description:
+      "6200+ active members across Discord, live events, weekly scrims, and a club culture that goes beyond the game.",
+  },
+  {
+    icon: "▶",
+    title: "Creator Campaigns",
+    description:
+      "350+ creator network. End-to-end brand storytelling, integrated content, reach amplification, and performance tracking.",
+  },
+  {
+    icon: "◈",
+    title: "Sponsor Activations",
+    description:
+      "From concept to live execution: on-ground events, digital campaigns, and post-campaign analytics. We make brands cultural moments.",
+  },
+  {
+    icon: "◻",
+    title: "Tournaments & Events",
+    description:
+      "Community tournaments, brand-led gaming events, IRL pop-ups, and IP-based competition structures curated across India.",
+  },
+  {
+    icon: "◧",
+    title: "Merchandise",
+    description:
+      "Premium club apparel and limited edition drops carrying the Maniac identity. Built for players, worn by the community.",
+  },
+];
+
+const creators: CreatorItem[] = [
+  { avatar: "F", handle: "@FrostByte", niche: "BGMI", reach: "2.1M", href: "https://www.instagram.com/maniacesports.in" },
+  { avatar: "V", handle: "@ValkyrieShot", niche: "Valorant", reach: "1.4M", href: "https://www.youtube.com/@maniacesports.official" },
+  { avatar: "N", handle: "@NightcrawlerGG", niche: "Variety", reach: "3.8M", href: "https://www.instagram.com/maniacesports.in" },
+  { avatar: "P", handle: "@PixelPanda", niche: "CS2", reach: "980K", href: "https://www.youtube.com/@maniacesports.official" },
+  { avatar: "S", handle: "@StormRift", niche: "BGMI", reach: "1.7M", href: "https://discord.gg/USk65pEe8H" },
+  { avatar: "E", handle: "@EchoFrame", niche: "Content", reach: "2.9M", href: "https://www.youtube.com/@maniacesports.official" },
+];
+
+const logos: LogoItem[] = [
+  { name: "Razer", href: "https://www.razer.com", image: "/images/brands/razer.svg" },
+  { name: "iQOO", href: "https://www.iqoo.com/in", image: "/images/brands/iqoo.svg" },
+  { name: "Lenovo", href: "https://www.lenovo.com/in/en", image: "/images/brands/lenovo.svg" },
+  { name: "Acer", href: "https://www.acer.com/in-en", image: "/images/brands/acer.svg" },
+  { name: "Infinix", href: "https://www.infinixmobility.com", image: "/images/brands/infinix.svg" },
+  { name: "Philips", href: "https://www.philips.co.in", image: "/images/brands/philips.svg" },
+  { name: "Warrior", href: "https://www.warriorsportsindia.com", image: "/images/brands/warrior.svg" },
+  { name: "Oneplay", href: "https://www.oneplay.in", image: "/images/brands/oneplay.svg" },
+  { name: "Rooter", href: "https://www.rooter.gg", image: "/images/brands/rooter.svg" },
+  { name: "Cadbury", href: "https://www.cadbury.co.in", image: "/images/brands/cadbury.svg" },
+  { name: "Qubo", href: "https://www.quboworld.com", image: "/images/brands/qubo.svg" },
+  { name: "Kreo", href: "https://kreo-tech.com", image: "/images/brands/kreo.svg" },
+];
+
+const products: ProductItem[] = [
+  {
+    letter: "M",
+    tag: "New Drop",
+    title: "Maniac Core Hoodie",
+    brand: "Maniac Esports",
+    price: "Rs. 1,299",
+    image: "/images/merch-hoodie.svg",
+    href: "#footer",
+  },
+  {
+    letter: "J",
+    tag: "Best Seller",
+    title: "Maniac Club Jersey",
+    brand: "Maniac Esports",
+    price: "Rs. 899",
+    image: "/images/merch-jersey.svg",
+    href: "#footer",
+  },
+  {
+    letter: "T",
+    tag: "Limited",
+    title: "Training Tee - Black",
+    brand: "Maniac Esports",
+    price: "Rs. 599",
+    image: "/images/merch-tee.svg",
+    href: "#footer",
+  },
+];
+
+const campaigns: CampaignItem[] = [
+  {
+    category: "Brand Activation",
+    year: "2024",
+    title: "Razer x Maniac",
+    description:
+      "Integrated gaming activation across 12 creator touchpoints. A 3-day live event with branded zones, live matches, and audience engagement mechanics that trended nationally.",
+    outcomes: "4.2M impressions · 18% engagement lift · 3 trending clips",
+    href: "mailto:partnerships@maniacesports.gg?subject=Razer%20x%20Maniac%20Case%20Study",
+    image: "/images/campaigns/razer-campaign.svg",
+  },
+  {
+    category: "Digital Campaign",
+    year: "2024",
+    title: "iQOO Gaming Sprint",
+    description:
+      "A 30-day content sprint featuring creator-led reviews and giveaways tied to iQOO's gaming phone launch, with community challenges and branded leaderboards included.",
+    outcomes: "2.8M reach · 9,400 attributed signups · 46 content pieces",
+    href: "mailto:partnerships@maniacesports.gg?subject=iQOO%20Gaming%20Sprint%20Case%20Study",
+    image: "/images/campaigns/iqoo-campaign.svg",
+  },
+  {
+    category: "Product Launch",
+    year: "2023",
+    title: "Kreo Gear Drop",
+    description:
+      "Launch activation for Kreo's gaming peripheral line with creator unboxing, live reaction streams, and an in-community tournament that sold out on day one.",
+    outcomes: "1.9M views · Sold out Day 1 · #3 trending YouTube Gaming IN",
+    href: "mailto:partnerships@maniacesports.gg?subject=Kreo%20Gear%20Drop%20Case%20Study",
+    image: "/images/campaigns/kreo-campaign.svg",
+  },
+];
+
+const people: PersonItem[] = [
+  {
+    avatar: "FC",
+    role: "Founder & CEO",
+    name: "Founder",
+    department: "Vision & Strategy",
+    href: "mailto:hello@maniacesports.gg?subject=Founder%20Introduction",
+    image: "/images/people/founder.svg",
+  },
+  {
+    avatar: "OH",
+    role: "Operations",
+    name: "Ops Head",
+    department: "Roster & Team Management",
+    href: "mailto:hello@maniacesports.gg?subject=Operations%20Query",
+    image: "/images/people/ops.svg",
+  },
+  {
+    avatar: "BD",
+    role: "Brand Director",
+    name: "Brand Lead",
+    department: "Sponsor Relations & Campaigns",
+    href: "mailto:partnerships@maniacesports.gg?subject=Brand%20Partnership%20Query",
+    image: "/images/people/brand.svg",
+  },
+  {
+    avatar: "PL",
+    role: "Production",
+    name: "Prod Lead",
+    department: "Content & Media Production",
+    href: "mailto:hello@maniacesports.gg?subject=Production%20Query",
+    image: "/images/people/production.svg",
+  },
+];
+
+const tickerItems = [
+  "BGMI",
+  "·",
+  "Valorant",
+  "·",
+  "CS2",
+  "·",
+  "Creator Campaigns",
+  "·",
+  "Brand Activations",
+  "·",
+  "Community Events",
+  "·",
+  "350+ Creators",
+  "·",
+  "Maniac Esports",
+  "·",
+  "India's Gaming Generation",
+  "·",
+];
+
+const communityPills = [
+  "Weekly Scrims",
+  "Community Tournaments",
+  "Creator Updates",
+  "Watch Parties",
+  "Discord Events",
+  "Club Culture",
+  "Gaming Drops",
+  "Member Highlights",
+];
+
+export default function HomePage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [scrollWidth, setScrollWidth] = useState(0);
+  const [activeSection, setActiveSection] = useState("#about");
+  const heroPanelRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const cursor = document.getElementById("cursor");
+    const revealEls = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
+    const statCards = Array.from(document.querySelectorAll<HTMLElement>(".stat-card"));
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>("section[id], footer[id]"),
+    );
+
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!cursor || window.matchMedia("(hover: none)").matches) {
+        return;
+      }
+      cursor.style.left = `${event.clientX}px`;
+      cursor.style.top = `${event.clientY}px`;
+    };
+
+    const handleScroll = () => {
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const pct = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+      setScrollWidth(pct);
+      setScrolled(window.scrollY > 40);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    revealEls.forEach((element) => revealObserver.observe(element));
+
+    const heroTimer = window.setTimeout(() => {
+      document
+        .querySelectorAll<HTMLElement>("#hero .reveal")
+        .forEach((element) => element.classList.add("in"));
+    }, 100);
+
+    const animateCounter = (element: HTMLElement, target: number, suffix = "+") => {
+      let start = 0;
+      const duration = 1800;
+
+      const step = (timestamp: number) => {
+        if (!start) {
+          start = timestamp;
+        }
+
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - (1 - progress) ** 3;
+        const current = Math.floor(eased * target);
+        element.textContent = `${current.toLocaleString("en-IN")}${suffix}`;
+
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+
+      window.requestAnimationFrame(step);
+    };
+
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          const element = entry.target.querySelector<HTMLElement>("[data-count]");
+          if (element) {
+            const target = Number.parseInt(element.dataset.count ?? "0", 10);
+            const suffix = element.dataset.suffix ?? "+";
+            animateCounter(element, target, suffix);
+          }
+          counterObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    statCards.forEach((card) => counterObserver.observe(card));
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+
+    sections.forEach((section) => sectionObserver.observe(section));
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
+      window.clearTimeout(heroTimer);
+      revealObserver.disconnect();
+      counterObserver.disconnect();
+      sectionObserver.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  const handleHeroMouseMove = (event: ReactMouseEvent<HTMLDivElement>) => {
+    const panel = heroPanelRef.current;
+    if (!panel) {
+      return;
+    }
+
+    const rect = panel.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    panel.style.transition = "transform 0.1s linear";
+    panel.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 4}deg)`;
+  };
+
+  const handleHeroMouseLeave = () => {
+    const panel = heroPanelRef.current;
+    if (!panel) {
+      return;
+    }
+
+    panel.style.transition = "transform 0.5s cubic-bezier(0.22,1,0.36,1)";
+    panel.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg)";
+  };
+
+  return (
+    <>
+      <a href="#about" className="skip-link">
+        Skip to content
+      </a>
+      <main className="maniac-page">
+        <div id="cursor" aria-hidden="true" />
+        <div id="scroll-bar" style={{ width: `${scrollWidth}%` }} aria-hidden="true" />
+
+        <nav id="navbar" className={scrolled ? "scrolled" : ""} aria-label="Primary">
+          <div className="container">
+            <a href="#hero" className="nav-logo" aria-label="Maniac Esports home">
+              <img src="/images/maniac-logo.svg" alt="Maniac Esports logo" className="nav-logo-icon" />
+            </a>
+
+            <ul className="nav-links">
+              {navigation.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href} className={activeSection === item.href ? "active" : ""}>
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div className="nav-ctas">
+              <a href="#partners" className="btn btn-ghost nav-btn">
+                Partner With Us
+              </a>
+              <a href="#community" className="btn btn-primary nav-btn">
+                Join Community
+              </a>
+            </div>
+
+            <button
+              className={`hamburger ${mobileMenuOpen ? "open" : ""}`}
+              id="hamburger"
+              aria-label="Menu"
+              aria-expanded={mobileMenuOpen}
+              onClick={() => setMobileMenuOpen((value) => !value)}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
+        </nav>
+
+        <div className={`mobile-menu ${mobileMenuOpen ? "open" : ""}`} id="mobileMenu">
+          {navigation.map((item) => (
+            <a key={item.href} href={item.href} onClick={closeMobileMenu}>
+              {item.label}
+            </a>
+          ))}
+          <div className="mob-ctas">
+            <a href="#partners" className="btn btn-outline" onClick={closeMobileMenu}>
+              Partner With Us
+            </a>
+            <a href="#community" className="btn btn-primary" onClick={closeMobileMenu}>
+              Join Community
+            </a>
+          </div>
+        </div>
+
+        <section id="hero" aria-labelledby="hero-title">
+          <div className="grid-bg" aria-hidden="true" />
+          <div className="glow glow-1" aria-hidden="true" />
+          <div className="glow glow-2" aria-hidden="true" />
+
+          <div className="container">
+            <div className="hero-inner">
+              <div className="hero-copy">
+                <div className="hero-eyebrow reveal">
+                  <span className="dot" />
+                  <span className="pill">India&apos;s #1 Gaming Club</span>
+                </div>
+
+                <h1 id="hero-title" className="hero-h1 reveal reveal-delay-1">
+                  Your Gateway
+                  <span className="line-accent">to the Gaming</span>
+                  <span className="line-dim">Generation.</span>
+                </h1>
+
+                <p className="hero-sub reveal reveal-delay-2">
+                  Founded in 2018, Maniac Esports is dedicated to delivering the ultimate
+                  competitive gaming experience for talented players through tournaments,
+                  creator-led culture, and brand partnerships like Hydra Elites, Streamer
+                  Showdowns, and T1 scrims.
+                </p>
+
+                <div className="hero-ctas reveal reveal-delay-3">
+                  <a href="#creators" className="btn btn-primary">
+                    Explore Creators
+                    <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path
+                        d="M1 7h12M8 2l5 5-5 5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </a>
+                  <a href="#community" className="btn btn-outline">
+                    Join Community
+                  </a>
+                  <a href="#partners" className="btn btn-ghost">
+                    Partner With Us
+                  </a>
+                </div>
+
+              </div>
+
+              <div className="hero-visual reveal reveal-delay-2">
+                <div
+                  ref={heroPanelRef}
+                  className="hero-panel"
+                  onMouseMove={handleHeroMouseMove}
+                  onMouseLeave={handleHeroMouseLeave}
+                >
+                  <div className="corner-mark tl" />
+                  <div className="corner-mark tr" />
+                  <div className="corner-mark bl" />
+                  <div className="corner-mark br" />
+                  <div className="hero-panel-inner">
+                    <video
+                      className="hero-panel-video"
+                      src="/videos/maniac-esports-intro.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label="Maniac Esports intro video montage"
+                    />
+                    <div className="hero-panel-text">M</div>
+                    <div className="hero-panel-meta">
+                      <div className="hero-panel-kicker">Intro Video / Club Visual</div>
+                    </div>
+                  </div>
+                  <div className="hero-panel-badge">
+                    <strong>Live</strong>
+                    Campaign Season 2025
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div id="ticker" aria-hidden="true">
+          <div className="ticker-inner" id="tickerInner">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <div className="ticker-item" key={index}>
+                {tickerItems.map((item, itemIndex) =>
+                  item === "·" ? (
+                    <span className="ticker-sep" key={`${index}-${itemIndex}`}>
+                      ·
+                    </span>
+                  ) : (
+                    <span key={`${index}-${itemIndex}`}>{item}</span>
+                  ),
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <section id="statsbar" aria-label="Key statistics">
+          <div className="statsbar-track">
+            <div className="stat-card reveal">
+              <div className="num">2018</div>
+              <div className="label">Founded</div>
+            </div>
+            <div className="stat-card reveal reveal-delay-1">
+              <div className="num" data-count="350">
+                0
+              </div>
+              <div className="label">Creator Network</div>
+            </div>
+            <div className="stat-card reveal reveal-delay-2">
+              <div className="num" data-count="30">
+                0
+              </div>
+              <div className="label">Brand Campaigns</div>
+            </div>
+            <div className="stat-card reveal reveal-delay-3">
+              <div className="num">500M+</div>
+              <div className="label">Campaign Reach</div>
+            </div>
+            <div className="stat-card reveal reveal-delay-4">
+              <div className="num" data-count="6200">
+                0
+              </div>
+              <div className="label">Community Members</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" aria-labelledby="about-title">
+          <div className="glow glow-1" aria-hidden="true" />
+          <div className="container">
+            <div className="about-grid">
+              <div className="about-visual reveal">
+                <div className="about-img-wrap">
+                  <img
+                    src="/images/about-club.svg"
+                    alt="Maniac Esports club community artwork"
+                    className="about-image"
+                    decoding="async"
+                  />
+                </div>
+                <div className="about-badge">
+                  <strong>7+</strong>
+                  <span>Years in Gaming</span>
+                </div>
+              </div>
+
+              <div>
+                <div className="section-label reveal">Our Story</div>
+                <h2 id="about-title" className="about-h2 reveal reveal-delay-1">
+                  Shaping the
+                  <em>Creative Frontier</em>
+                  in Gaming.
+                </h2>
+                <p className="about-body reveal reveal-delay-2">
+                  Founded in 2018, Maniac Esports is dedicated to delivering the ultimate
+                  competitive gaming experience for talented players. The mission extends
+                  beyond gaming itself. It is a pursuit of greatness through tournaments,
+                  team building, and brand partnerships that create real opportunity.
+                </p>
+                <p className="about-body reveal reveal-delay-3">
+                  Events like Hydra Elites, Streamer Showdowns, and T1 scrims define the
+                  club&apos;s approach: competitive structure, creator energy, and a community
+                  that invites dreamers to help redefine India&apos;s esports landscape.
+                </p>
+                <div className="about-pills reveal reveal-delay-4">
+                  {["Community First", "Player Led", "Brand Ready", "India Born", "Creator Network"].map(
+                    (pill) => (
+                      <span className="about-pill" key={pill}>
+                        {pill}
+                      </span>
+                    ),
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="creators" aria-labelledby="creators-title">
+          <div className="glow glow-1" aria-hidden="true" />
+          <div className="container creators-shell">
+            <div className="creators-layout">
+              <div className="creators-left">
+                <div className="section-label reveal">Creator Network</div>
+                <h2 id="creators-title" className="creators-h2 reveal reveal-delay-1">
+                  350+ Creators.
+                  <br />
+                  <span>One Voice.</span>
+                </h2>
+                <p className="creators-body reveal reveal-delay-2">
+                  Maniac&apos;s creator network spans BGMI, Valorant, variety gaming, and
+                  pure content. We power brand activations, community reach, and gaming
+                  culture storytelling at scale across YouTube, Instagram, and beyond.
+                </p>
+                <div className="creators-stats reveal reveal-delay-3">
+                  <div className="c-stat">
+                    <strong>350+</strong>
+                    <span>Active Creators</span>
+                  </div>
+                  <div className="stat-divider" />
+                  <div className="c-stat">
+                    <strong>500M+</strong>
+                    <span>Combined Reach</span>
+                  </div>
+                  <div className="stat-divider" />
+                  <div className="c-stat">
+                    <strong>30+</strong>
+                    <span>Brands Served</span>
+                  </div>
+                </div>
+                <div className="reveal reveal-delay-4">
+                  <a
+                    href="https://www.youtube.com/@maniacesports.official"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn btn-primary"
+                  >
+                    Explore Creator Network
+                    <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path
+                        d="M1 7h12M8 2l5 5-5 5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <a
+                  href="https://www.youtube.com/@maniacesports.official"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="creators-feature-image reveal"
+                >
+                  <img
+                    src="/images/creator-network.svg"
+                    alt="Maniac creator network artwork"
+                    className="creators-feature-media"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+                <div className="creators-grid">
+                  {creators.map((creator, index) => (
+                    <a
+                      className={`creator-card reveal ${index ? `reveal-delay-${Math.min(index, 6)}` : ""}`}
+                      key={creator.handle}
+                      href={creator.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <div className="creator-avatar">{creator.avatar}</div>
+                      <div className="creator-handle">{creator.handle}</div>
+                      <div className="creator-niche">{creator.niche}</div>
+                      <div className="creator-reach">{creator.reach}</div>
+                      <div className="creator-reach-label">Reach</div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="partners" aria-labelledby="partners-title">
+          <div className="glow glow-1" aria-hidden="true" />
+          <div className="container partners-shell">
+            <div className="partners-header">
+              <div className="section-label centered reveal">Our Clients</div>
+              <h2 id="partners-title" className="partners-h2 reveal reveal-delay-1">
+                Brands That Trust
+                <span>Maniac.</span>
+              </h2>
+              <p className="partners-sub reveal reveal-delay-2">
+                From product launches to live events and creator-led campaigns, we connect
+                brands with India&apos;s most engaged gaming communities.
+              </p>
+            </div>
+
+            <div className="logo-wall">
+              {logos.map((logo, index) => (
+                <a
+                  className={`logo-item reveal ${index % 6 ? `reveal-delay-${Math.min(index % 6, 6)}` : ""}`}
+                  key={logo.name}
+                  href={logo.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={logo.image}
+                    alt={`${logo.name} logo`}
+                    className="logo-image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span className="logo-name">{logo.name}</span>
+                </a>
+              ))}
+            </div>
+
+            <div className="partners-bottom">
+              <p className="partners-claim reveal">
+                Trusted by 30+ brands across gaming, tech, FMCG, and consumer electronics.
+                Campaign outcomes tracked. ROI delivered.
+              </p>
+              <a
+                href="mailto:partnerships@maniacesports.gg"
+                className="btn btn-primary reveal reveal-delay-1"
+              >
+                See Partnership Opportunities
+                <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path
+                    d="M1 7h12M8 2l5 5-5 5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="services">
+          <div className="container">
+            <div className="services-header">
+              <div>
+                <div className="section-label reveal">What We Do</div>
+                <h2 className="services-h2 reveal reveal-delay-1">
+                  One Ecosystem.
+                  <span>Six Capabilities.</span>
+                </h2>
+              </div>
+              <a href="#partners" className="btn btn-ghost reveal reveal-delay-2">
+                Work With Us
+              </a>
+            </div>
+
+            <div className="services-grid">
+              {services.map((service, index) => (
+                <a
+                  className={`service-card reveal ${index ? `reveal-delay-${Math.min(index, 6)}` : ""}`}
+                  key={service.title}
+                  href="#partners"
+                >
+                  <div className="service-icon">{service.icon}</div>
+                  <div className="service-title">{service.title}</div>
+                  <p className="service-desc">{service.description}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="community" aria-labelledby="community-title">
+          <div className="glow glow-1" aria-hidden="true" />
+          <div className="grid-bg" aria-hidden="true" />
+          <div className="container community-shell">
+            <div className="community-inner">
+              <div className="section-label centered reveal">Community</div>
+              <h2 id="community-title" className="community-h2 reveal reveal-delay-1">
+                Community Isn&apos;t a Feature.
+                <em>It&apos;s the Brand.</em>
+              </h2>
+              <p className="community-sub reveal reveal-delay-2">
+                6200+ members. Active Discord. Weekly scrims and tournaments. Creator drops,
+                watch parties, and a club mentality that shows up on and off the server.
+              </p>
+              <div className="community-ctas reveal reveal-delay-3">
+                <a
+                  href="https://discord.gg/USk65pEe8H"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="discord-btn"
+                >
+                  <svg viewBox="0 0 18 14" fill="none" aria-hidden="true">
+                    <path
+                      d="M15.25 1.5A15.3 15.3 0 0 0 11.5.5a10.5 10.5 0 0 0-.5 1A14.2 14.2 0 0 0 5 1.5a10.5 10.5 0 0 0-.5-1A15.3 15.3 0 0 0 .75 1.5C-.5 5.5-.25 9.4 1 12c1.25.9 2.5 1.5 3.75 1.5l.75-1a10 10 0 0 1-2.25-1c.2-.15.4-.3.55-.45a10.9 10.9 0 0 0 9.4 0c.15.15.35.3.55.45A10 10 0 0 1 11.5 12.5l.75 1C13.5 13.5 14.75 12.9 16 12c1.25-2.6 1.5-6.5.25-10.5Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  Join Discord
+                </a>
+                <a
+                  href="https://discord.gg/USk65pEe8H"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-primary"
+                >
+                  Join the Club
+                </a>
+                <a href="#work" className="btn btn-ghost">
+                  View Events
+                </a>
+              </div>
+              <a
+                href="https://discord.gg/USk65pEe8H"
+                target="_blank"
+                rel="noreferrer"
+                className="community-feature reveal reveal-delay-4"
+              >
+                <img
+                  src="/images/community-banner.svg"
+                  alt="Maniac Esports community artwork"
+                  className="community-feature-image"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+              <div className="community-pills reveal reveal-delay-4">
+                {communityPills.map((pill) => (
+                  <span className="comm-pill" key={pill}>
+                    {pill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="shop" aria-labelledby="shop-title">
+          <div className="container">
+            <div className="shop-header">
+              <div>
+                <div className="section-label reveal">Merch Store</div>
+                <h2 id="shop-title" className="shop-h2 reveal reveal-delay-1">
+                  Wear <span>the Club.</span>
+                </h2>
+              </div>
+              <div className="shop-actions reveal reveal-delay-2">
+                <span className="shop-note">More drops coming soon</span>
+                <a href="#footer" className="btn btn-ghost">
+                  Explore Merch
+                </a>
+              </div>
+            </div>
+
+            <div className="merch-grid">
+              {products.map((product, index) => (
+                <a
+                  className={`merch-card reveal ${index ? `reveal-delay-${Math.min(index, 6)}` : ""}`}
+                  key={product.title}
+                  href={product.href}
+                >
+                  <div className="merch-visual">
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className="merch-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="merch-visual-letter">{product.letter}</div>
+                    <div className="merch-tag">{product.tag}</div>
+                  </div>
+                  <div className="merch-info">
+                    <div>
+                      <div className="merch-name">{product.title}</div>
+                      <div className="merch-brand">{product.brand}</div>
+                    </div>
+                    <div className="merch-price">{product.price}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="work" aria-labelledby="work-title">
+          <div className="glow glow-1" aria-hidden="true" />
+          <div className="container work-shell">
+            <div className="work-header">
+              <div>
+                <div className="section-label reveal">Featured Work</div>
+                <h2 id="work-title" className="work-h2 reveal reveal-delay-1">
+                  Campaigns That
+                  <span>Move the Needle.</span>
+                </h2>
+              </div>
+              <a href="mailto:partnerships@maniacesports.gg" className="btn btn-ghost reveal reveal-delay-2">
+                View Case Studies
+              </a>
+            </div>
+
+            <div className="campaigns-grid">
+              {campaigns.map((campaign, index) => (
+                <a
+                  className={`campaign-card reveal ${index ? `reveal-delay-${Math.min(index, 6)}` : ""}`}
+                  key={campaign.title}
+                  href={campaign.href}
+                >
+                  <img
+                    src={campaign.image}
+                    alt={`${campaign.title} campaign artwork`}
+                    className="campaign-image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="campaign-cat">
+                    <span className="tag">{campaign.category}</span>
+                    <span className="campaign-year">{campaign.year}</span>
+                  </div>
+                  <div className="campaign-title">{campaign.title}</div>
+                  <p className="campaign-desc">{campaign.description}</p>
+                  <div className="campaign-outcomes">{campaign.outcomes}</div>
+                  <div className="campaign-arrow">
+                    Read Case Study <span>→</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="leadership" aria-labelledby="leadership-title">
+          <div className="container">
+            <div className="section-label reveal">The Team</div>
+            <h2 id="leadership-title" className="leadership-h2 reveal reveal-delay-1">
+              The People <span>Behind the Club.</span>
+            </h2>
+
+            <div className="team-people-grid">
+              {people.map((person, index) => (
+                <a
+                  className={`person-card reveal ${index ? `reveal-delay-${Math.min(index, 6)}` : ""}`}
+                  key={person.name}
+                  href={person.href}
+                >
+                  <img
+                    src={person.image}
+                    alt={`${person.name} portrait artwork`}
+                    className="person-image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="person-avatar">{person.avatar}</div>
+                  <div className="person-role">{person.role}</div>
+                  <div className="person-name">{person.name}</div>
+                  <div className="person-dept">{person.department}</div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <footer id="footer">
+          <div className="container">
+            <div className="footer-grid">
+              <div>
+                <div className="footer-logo">
+                  <a href="#hero" className="footer-brand" aria-label="Back to top">
+                    <img src="/images/maniac-logo.svg" alt="Maniac Esports logo" className="footer-logo-icon" />
+                  </a>
+                </div>
+                <p className="footer-tagline">
+                  Founded in 2018, Maniac Esports builds competitive opportunities through
+                  tournaments, creator culture, and brand partnerships for India&apos;s gaming
+                  generation.
+                </p>
+                <div className="footer-socials">
+                  {[
+                    { label: "YT", href: "https://www.youtube.com/@maniacesports.official" },
+                    { label: "IG", href: "https://www.instagram.com/maniacesports.in" },
+                    { label: "DC", href: "https://discord.gg/USk65pEe8H" },
+                  ].map((item) => (
+                    <a
+                      className="social-btn"
+                      title={item.label}
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <div className="footer-col-title">Navigation</div>
+                <div className="footer-links">
+                  {navigation.map((item) => (
+                    <a href={item.href} key={item.href}>
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <div className="footer-col-title">Company</div>
+                <div className="footer-links">
+                  {["Careers", "Press Kit", "Privacy Policy", "Terms & Conditions", "Cookie Policy"].map(
+                    (item) => (
+                      <a href="#footer" key={item}>
+                        {item}
+                      </a>
+                    ),
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <div className="footer-col-title">Get In Touch</div>
+                <div className="footer-contact">
+                  <p>For partnerships &amp; brand inquiries:</p>
+                  <a href="mailto:partnerships@maniacesports.gg">
+                    partnerships@maniacesports.gg
+                  </a>
+                  <br />
+                  <br />
+                  <p>General:</p>
+                  <a href="mailto:hello@maniacesports.gg">hello@maniacesports.gg</a>
+                  <br />
+                  <br />
+                  <a
+                    href="https://discord.gg/USk65pEe8H"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn btn-primary footer-join-btn"
+                  >
+                    Join Discord
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="footer-bottom">
+              <span className="footer-copy">© 2025 Maniac Esports. All Rights Reserved.</span>
+              <span className="footer-made">YouTube · Discord · Instagram · Built for the community</span>
+            </div>
+          </div>
+        </footer>
+      </main>
+
+      <style jsx global>{`
+        @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap");
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+          --bg: #060608;
+          --bg2: #0a0a0e;
+          --surface: #0f0f15;
+          --surface2: #141420;
+          --border: rgba(255,255,255,0.07);
+          --border-strong: rgba(255,255,255,0.14);
+          --accent: #ff29ea;
+          --accent2: #7c3aed;
+          --accent-dim: rgba(224,64,251,0.12);
+          --accent-glow: rgba(224,64,251,0.25);
+          --text: #f0f0f8;
+          --text-muted: rgba(240,240,248,0.45);
+          --text-dim: rgba(240,240,248,0.25);
+          --white: #ffffff;
+          --font-display: "Bebas Neue", sans-serif;
+          --font-body: "Syne", sans-serif;
+          --font-mono: "DM Mono", monospace;
+          --ease: cubic-bezier(0.22,1,0.36,1);
+          --radius: 2px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+          background: var(--bg);
+          color: var(--text);
+          font-family: var(--font-body);
+          -webkit-font-smoothing: antialiased;
+          overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { display: block; max-width: 100%; }
+        button { cursor: pointer; font-family: inherit; border: none; }
+        a:focus-visible, button:focus-visible {
+          outline: 2px solid var(--accent);
+          outline-offset: 3px;
+        }
+
+        .skip-link {
+          position: fixed;
+          top: 12px;
+          left: 16px;
+          z-index: 400;
+          padding: 10px 14px;
+          background: var(--accent);
+          color: var(--white);
+          font-family: var(--font-mono);
+          font-size: 10px;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          transform: translateY(-140%);
+          transition: transform 0.2s var(--ease);
+        }
+
+        .skip-link:focus-visible { transform: translateY(0); }
+
+        section[id], footer[id] {
+          scroll-margin-top: 88px;
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        @media(max-width:768px){ .container{ padding: 0 20px; } }
+
+        .section-label {
+          display: inline-flex; align-items: center; gap: 10px;
+          font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em;
+          text-transform: uppercase; color: var(--accent);
+          margin-bottom: 16px;
+        }
+
+        .section-label.centered { justify-content: center; }
+
+        .section-label::before {
+          content: ""; display: block; width: 24px; height: 1px; background: var(--accent);
+        }
+
+        .tag {
+          display: inline-block; font-family: var(--font-mono); font-size: 9px;
+          letter-spacing: 0.22em; text-transform: uppercase; padding: 5px 10px;
+          border: 1px solid var(--border-strong); color: var(--text-muted);
+          border-radius: var(--radius);
+        }
+
+        .btn {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 13px 24px; font-family: var(--font-body);
+          font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+          border-radius: var(--radius); transition: all 0.25s var(--ease);
+          cursor: pointer; border: none;
+        }
+
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { background: rgba(224,64,251,0.85); transform: translateY(-1px); }
+
+        .btn-outline {
+          background: transparent; color: var(--text);
+          border: 1px solid var(--border-strong);
+        }
+
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+        .btn-ghost {
+          background: transparent; color: var(--text-muted);
+          border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover { border-color: var(--border-strong); color: var(--text); }
+        .btn svg { width: 14px; height: 14px; transition: transform 0.2s; }
+        .btn:hover svg { transform: translateX(2px); }
+
+        body::before {
+          content: "";
+          position: fixed; inset: 0; z-index: 0; pointer-events: none;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+          opacity: 0.4;
+        }
+
+        .grid-bg {
+          position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+          background-image:
+            linear-gradient(rgba(224,64,251,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(224,64,251,0.03) 1px, transparent 1px);
+          background-size: 72px 72px;
+        }
+
+        .glow {
+          position: absolute; border-radius: 50%; pointer-events: none;
+          filter: blur(120px); mix-blend-mode: screen;
+        }
+
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.18s; }
+        .reveal-delay-3 { transition-delay: 0.26s; }
+        .reveal-delay-4 { transition-delay: 0.34s; }
+        .reveal-delay-5 { transition-delay: 0.42s; }
+        .reveal-delay-6 { transition-delay: 0.5s; }
+
+        #navbar {
+          position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+          height: 64px; display: flex; align-items: center;
+          transition: background 0.3s, border-color 0.3s;
+          border-bottom: 1px solid transparent;
+        }
+
+        #navbar.scrolled {
+          background: rgba(6,6,8,0.92);
+          backdrop-filter: blur(16px);
+          border-color: var(--border);
+        }
+
+        #navbar .container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+
+        .nav-logo {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .nav-logo-icon {
+          width: 64px;
+          height: auto;
+          display: block;
+        }
+        .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+
+        .nav-links a {
+          font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+          color: var(--text-muted); transition: color 0.2s; font-weight: 500;
+        }
+
+        .nav-links a:hover { color: var(--white); }
+        .nav-links a.active { color: var(--accent); }
+        .nav-ctas { display: flex; align-items: center; gap: 10px; }
+        .nav-btn { padding: 9px 18px; font-size: 12px; }
+
+        .hamburger {
+          display: none; background: none; border: none;
+          flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+        }
+
+        .hamburger span {
+          display: block; width: 22px; height: 1.5px; background: var(--text);
+          transition: all 0.25s;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+        .mobile-menu {
+          display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+          background: rgba(6,6,8,0.97); backdrop-filter: blur(20px);
+          border-bottom: 1px solid var(--border);
+          padding: 24px 20px 28px; flex-direction: column; gap: 0;
+        }
+
+        .mobile-menu.open { display: flex; }
+
+        .mobile-menu a {
+          padding: 13px 0; border-bottom: 1px solid var(--border);
+          font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
+          color: var(--text-muted); font-weight: 500;
+        }
+
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu .mob-ctas { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+
+        @media(max-width:900px){
+          .nav-links { display: none; }
+          .nav-ctas .btn:first-child { display: none; }
+          .hamburger { display: flex; }
+        }
+
+        @media(max-width:480px){ .nav-ctas { display: none; } }
+
+        #hero {
+          position: relative; min-height: 100vh;
+          display: flex; align-items: center; overflow: hidden;
+          padding-top: 64px;
+        }
+
+        #hero .grid-bg { opacity: 0.7; }
+        #hero .glow-1 {
+          width: 700px; height: 700px;
+          background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+          opacity: 0.06; top: -10%; left: -15%;
+        }
+
+        #hero .glow-2 {
+          width: 400px; height: 400px;
+          background: radial-gradient(circle, var(--accent2) 0%, transparent 70%);
+          opacity: 0.08; bottom: 10%; right: 10%;
+        }
+
+        .hero-inner {
+          position: relative; z-index: 2; width: 100%;
+          display: grid; grid-template-columns: 1fr; gap: 42px;
+          align-items: center; padding: 80px 0 56px;
+        }
+
+        @media(max-width:900px){ .hero-inner { gap: 32px; padding: 60px 0 44px; } }
+        .hero-copy { text-align: center; }
+        .hero-copy .hero-eyebrow { justify-content: center; }
+
+        .hero-eyebrow { margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+
+        .hero-eyebrow .pill {
+          font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.3em;
+          text-transform: uppercase; padding: 5px 12px;
+          background: var(--accent-dim); border: 1px solid rgba(224,64,251,0.3);
+          color: var(--accent); border-radius: 20px;
+        }
+
+        .hero-eyebrow .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); animation: pulse-dot 2s infinite; }
+        @keyframes pulse-dot { 0%,100%{ opacity:1; transform: scale(1); } 50%{ opacity:0.4; transform: scale(0.7); } }
+
+        .hero-h1 {
+          font-family: var(--font-display); font-size: clamp(56px, 7vw, 96px);
+          line-height: 0.93; letter-spacing: 0.02em; color: var(--white);
+          text-transform: uppercase; margin-bottom: 24px;
+        }
+
+        .hero-h1 .line-accent { color: var(--accent); display: block; }
+        .hero-h1 .line-dim { color: rgba(240,240,248,0.35); display: block; }
+
+        .hero-sub {
+          font-size: 16px; line-height: 1.7; color: var(--text-muted);
+          max-width: 760px; margin: 0 auto 36px; font-weight: 400;
+        }
+
+        .hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; justify-content: center; }
+
+        .hero-visual { position: relative; width: 100%; }
+
+        .hero-panel {
+          position: relative; aspect-ratio: 16/7.4;
+          border: 1px solid var(--border-strong); overflow: hidden;
+          background: var(--surface);
+          border-radius: var(--radius);
+          will-change: transform;
+          width: min(100%, 1260px);
+          min-height: 520px;
+          margin: 0 auto;
+        }
+
+        @media(max-width:900px){
+          .hero-panel {
+            aspect-ratio: 16/9;
+            min-height: 340px;
+          }
+        }
+
+        .hero-panel::before {
+          content: ""; position: absolute; inset: 0;
+          background: linear-gradient(135deg, rgba(224,64,251,0.08) 0%, transparent 50%, rgba(124,58,237,0.06) 100%);
+        }
+
+        .hero-panel-inner {
+          width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+          position: relative; z-index: 1;
+        }
+
+        .hero-panel-video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0.9;
+        }
+
+        .hero-panel-text {
+          font-family: var(--font-display); font-size: 120px; letter-spacing: -0.02em;
+          color: rgba(255,255,255,0.04); line-height: 1; text-transform: uppercase;
+          position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+        }
+
+        .hero-panel-meta { text-align: center; position: relative; z-index: 2; }
+
+        .hero-panel-kicker {
+          font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.3em;
+          text-transform: uppercase; color: rgba(255,255,255,0.15);
+        }
+
+        .hero-panel-badge {
+          position: absolute; bottom: 20px; left: 20px;
+          background: rgba(0,0,0,0.7); backdrop-filter: blur(12px);
+          border: 1px solid var(--border-strong); padding: 10px 14px;
+          font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em;
+          color: var(--text-muted); text-transform: uppercase;
+        }
+
+        .hero-panel-badge strong { color: var(--accent); display: block; font-size: 13px; letter-spacing: 0; }
+
+        .corner-mark {
+          position: absolute; width: 14px; height: 14px; pointer-events: none;
+        }
+
+        .corner-mark.tl { top: 10px; left: 10px; border-top: 1px solid var(--accent); border-left: 1px solid var(--accent); }
+        .corner-mark.tr { top: 10px; right: 10px; border-top: 1px solid var(--accent); border-right: 1px solid var(--accent); }
+        .corner-mark.bl { bottom: 10px; left: 10px; border-bottom: 1px solid var(--accent); border-left: 1px solid var(--accent); }
+        .corner-mark.br { bottom: 10px; right: 10px; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); }
+
+        #statsbar {
+          position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+          background: var(--surface); overflow: hidden; padding: 0;
+        }
+
+        .statsbar-track { display: flex; align-items: stretch; border-left: 1px solid var(--border); }
+
+        .stat-card {
+          flex: 1; padding: 32px 28px;
+          border-right: 1px solid var(--border);
+          position: relative; overflow: hidden;
+          transition: background 0.3s;
+        }
+
+        .stat-card:hover { background: var(--surface2); }
+
+        .stat-card::before {
+          content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+          background: var(--accent); transform: scaleX(0); transform-origin: left;
+          transition: transform 0.4s var(--ease);
+        }
+
+        .stat-card:hover::before { transform: scaleX(1); }
+
+        .stat-card .num {
+          font-family: var(--font-display); font-size: 44px; color: var(--white);
+          line-height: 1; letter-spacing: 0.02em; margin-bottom: 6px;
+        }
+
+        .stat-card .label {
+          font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
+          text-transform: uppercase; color: var(--text-dim);
+        }
+
+        @media(max-width:900px){
+          .statsbar-track { flex-wrap: wrap; }
+          .stat-card { flex: 1 1 calc(50% - 0px); }
+        }
+
+        @media(max-width:480px){ .stat-card { flex: 1 1 100%; } }
+
+        #ticker {
+          background: var(--accent); padding: 11px 0; overflow: hidden;
+          border-top: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .ticker-inner { display: flex; white-space: nowrap; animation: ticker-scroll 30s linear infinite; }
+
+        .ticker-item {
+          display: inline-flex; align-items: center; gap: 20px;
+          font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em;
+          text-transform: uppercase; color: rgba(0,0,0,0.7); padding-right: 60px;
+        }
+
+        .ticker-sep { color: rgba(0,0,0,0.4); }
+        @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        #about {
+          position: relative; padding: 100px 0; overflow: hidden;
+        }
+
+        #about .glow-1 {
+          width: 500px; height: 500px;
+          background: radial-gradient(circle, var(--accent2) 0%, transparent 70%);
+          opacity: 0.05; top: 20%; right: -10%;
+        }
+
+        .about-grid {
+          display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+        }
+
+        @media(max-width:900px){ .about-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+        .about-visual { position: relative; }
+
+        .about-img-wrap {
+          aspect-ratio: 3/4; background: var(--surface);
+          border: 1px solid var(--border-strong); overflow: hidden; position: relative;
+          border-radius: var(--radius);
+        }
+
+        .about-img-wrap::after {
+          content: ""; position: absolute; inset: 0;
+          background: linear-gradient(to top, rgba(6,6,8,0.7) 0%, transparent 50%);
+        }
+
+        .about-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .about-badge {
+          position: absolute; bottom: -20px; right: -20px; z-index: 2;
+          background: var(--accent); padding: 20px 22px; text-align: center;
+        }
+
+        .about-badge strong { font-family: var(--font-display); font-size: 40px; color: #fff; display: block; line-height: 1; }
+        .about-badge span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+
+        .about-h2 {
+          font-family: var(--font-display); font-size: clamp(40px, 4.5vw, 64px);
+          line-height: 0.95; text-transform: uppercase; color: var(--white);
+          letter-spacing: 0.02em; margin-bottom: 24px;
+        }
+
+        .about-h2 em { color: var(--accent); font-style: normal; display: block; }
+        .about-body { font-size: 15px; line-height: 1.8; color: var(--text-muted); margin-bottom: 16px; }
+        .about-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+
+        .about-pill {
+          font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em;
+          text-transform: uppercase; padding: 6px 12px;
+          border: 1px solid var(--border-strong); color: var(--text-muted);
+        }
+
+        #services {
+          position: relative; padding: 100px 0;
+          background: var(--surface); border-top: 1px solid var(--border);
+        }
+
+        .services-header {
+          display: flex; align-items: flex-end; justify-content: space-between;
+          margin-bottom: 60px; gap: 20px;
+        }
+
+        @media(max-width:700px){ .services-header { flex-direction: column; align-items: flex-start; } }
+
+        .services-h2 {
+          font-family: var(--font-display); font-size: clamp(40px, 5vw, 72px);
+          line-height: 0.93; text-transform: uppercase; color: var(--white);
+          letter-spacing: 0.02em;
+        }
+
+        .services-h2 span { color: rgba(240,240,248,0.3); display: block; }
+
+        .services-grid {
+          display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+          background: var(--border);
+          border: 1px solid var(--border);
+        }
+
+        @media(max-width:900px){ .services-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width:560px){ .services-grid { grid-template-columns: 1fr; } }
+
+        .service-card {
+          background: var(--surface); padding: 36px 28px;
+          position: relative; overflow: hidden;
+          transition: background 0.3s;
+          cursor: default;
+          display: block;
+        }
+
+        .service-card:hover { background: var(--bg); }
+
+        .service-card::before {
+          content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+          background: var(--accent); transform: scaleX(0); transform-origin: left;
+          transition: transform 0.5s var(--ease);
+        }
+
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-icon {
+          font-size: 22px; color: rgba(224,64,251,0.4); margin-bottom: 16px;
+          transition: color 0.3s;
+          font-family: var(--font-mono);
+        }
+
+        .service-card:hover .service-icon { color: var(--accent); }
+
+        .service-title {
+          font-family: var(--font-display); font-size: 26px; text-transform: uppercase;
+          letter-spacing: 0.04em; color: var(--white); margin-bottom: 10px; line-height: 1;
+        }
+
+        .service-desc { font-size: 13px; color: var(--text-muted); line-height: 1.75; }
+
+        #creators {
+          position: relative; padding: 100px 0;
+          background: var(--surface); border-top: 1px solid var(--border); overflow: hidden;
+        }
+
+        #creators .glow-1 {
+          width: 600px; height: 600px;
+          background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+          opacity: 0.04; top: 50%; right: -20%; transform: translateY(-50%);
+        }
+
+        .creators-shell { position: relative; z-index: 2; }
+
+        .creators-layout {
+          display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start;
+        }
+
+        @media(max-width:900px){ .creators-layout { grid-template-columns: 1fr; gap: 48px; } }
+
+        .creators-h2 {
+          font-family: var(--font-display); font-size: clamp(38px, 4.5vw, 60px);
+          text-transform: uppercase; color: var(--white); line-height: 0.93;
+          letter-spacing: 0.02em; margin-bottom: 20px;
+        }
+
+        .creators-h2 span { color: var(--accent); }
+        .creators-body { font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 28px; }
+        .creators-stats { display: flex; gap: 28px; margin-bottom: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+        .c-stat strong { font-family: var(--font-display); font-size: 36px; color: var(--white); display: block; line-height: 1; }
+        .c-stat span { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
+        .stat-divider { width: 1px; background: var(--border); }
+
+        .creators-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        @media(max-width:480px){ .creators-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .creators-feature-image {
+          display: block;
+          margin-bottom: 18px;
+          border: 1px solid var(--border);
+          background: var(--bg);
+          overflow: hidden;
+        }
+
+        .creators-feature-media {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        .creator-card {
+          border: 1px solid var(--border); background: var(--bg);
+          padding: 16px; transition: border-color 0.3s, background 0.3s;
+          cursor: default; border-radius: var(--radius);
+          display: block;
+        }
+
+        .creator-card:hover { border-color: rgba(224,64,251,0.3); background: var(--surface2); }
+
+        .creator-avatar {
+          width: 44px; height: 44px; border-radius: 50%;
+          background: var(--surface2); border: 1px solid var(--border);
+          display: flex; align-items: center; justify-content: center;
+          font-family: var(--font-display); font-size: 18px; color: var(--text-dim);
+          margin-bottom: 10px; transition: border-color 0.3s;
+        }
+
+        .creator-card:hover .creator-avatar { border-color: rgba(224,64,251,0.4); }
+        .creator-handle { font-weight: 600; font-size: 12px; color: var(--white); margin-bottom: 2px; }
+        .creator-niche { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
+        .creator-reach { font-family: var(--font-display); font-size: 20px; color: var(--white); line-height: 1; }
+        .creator-reach-label { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-top: 1px; }
+
+        #partners {
+          position: relative; padding: 100px 0;
+          border-top: 1px solid var(--border); overflow: hidden;
+        }
+
+        #partners .glow-1 {
+          width: 600px; height: 400px;
+          background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+          opacity: 0.04; bottom: -10%; left: 20%;
+        }
+
+        .partners-shell { position: relative; z-index: 2; }
+        .partners-header { text-align: center; margin-bottom: 60px; }
+
+        .partners-h2 {
+          font-family: var(--font-display); font-size: clamp(40px, 5vw, 72px);
+          text-transform: uppercase; color: var(--white); line-height: 0.93;
+          letter-spacing: 0.02em; margin-bottom: 16px;
+        }
+
+        .partners-h2 span { color: var(--accent); display: block; }
+        .partners-sub { font-size: 15px; color: var(--text-muted); max-width: 560px; margin: 0 auto 12px; line-height: 1.7; }
+
+        .logo-wall {
+          display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px;
+          background: var(--border); border: 1px solid var(--border);
+          margin-bottom: 48px;
+        }
+
+        @media(max-width:900px){ .logo-wall { grid-template-columns: repeat(4, 1fr); } }
+        @media(max-width:560px){ .logo-wall { grid-template-columns: repeat(3, 1fr); } }
+        @media(max-width:380px){ .logo-wall { grid-template-columns: repeat(2, 1fr); } }
+
+        .logo-item {
+          background: var(--surface); min-height: 92px; display: flex; align-items: center; justify-content: center;
+          transition: background 0.3s; cursor: pointer; position: relative; overflow: hidden;
+          flex-direction: column;
+          gap: 8px;
+          padding: 14px;
+        }
+
+        .logo-item:hover { background: var(--surface2); }
+
+        .logo-item::before {
+          content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s;
+          background: radial-gradient(circle at 50% 50%, rgba(224,64,251,0.06), transparent 70%);
+        }
+
+        .logo-item:hover::before { opacity: 1; }
+
+        .logo-name {
+          font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em;
+          text-transform: uppercase; color: var(--text-dim);
+          transition: color 0.3s;
+          text-align: center;
+        }
+
+        .logo-item:hover .logo-name { color: var(--text); }
+        .logo-image {
+          max-width: 148px;
+          max-height: 42px;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+        }
+        .partners-bottom { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+        .partners-claim {
+          font-size: 13px; color: var(--text-dim); text-align: center;
+          font-family: var(--font-mono); letter-spacing: 0.08em; max-width: 500px; line-height: 1.6;
+        }
+
+        #community {
+          position: relative; padding: 100px 0; overflow: hidden;
+          background: var(--surface); border-top: 1px solid var(--border);
+        }
+
+        #community .glow-1 {
+          width: 800px; height: 800px;
+          background: radial-gradient(circle, var(--accent) 0%, transparent 60%);
+          opacity: 0.05; top: 50%; left: 50%; transform: translate(-50%,-50%);
+        }
+
+        .community-shell { position: relative; z-index: 2; }
+        .community-inner { text-align: center; max-width: 760px; margin: 0 auto; }
+
+        .community-h2 {
+          font-family: var(--font-display); font-size: clamp(48px, 7vw, 96px);
+          text-transform: uppercase; color: var(--white); line-height: 0.9;
+          letter-spacing: 0.02em; margin-bottom: 24px;
+        }
+
+        .community-h2 em { color: var(--accent); font-style: normal; display: block; }
+        .community-sub { font-size: 16px; color: var(--text-muted); line-height: 1.75; margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
+        .community-ctas { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 56px; }
+
+        .discord-btn {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 13px 24px; background: #5865F2; color: #fff;
+          font-family: var(--font-body); font-size: 13px; font-weight: 600;
+          letter-spacing: 0.04em; border-radius: var(--radius); border: none;
+          cursor: pointer; transition: all 0.25s var(--ease);
+        }
+
+        .discord-btn:hover { background: #4752C4; transform: translateY(-1px); }
+        .discord-btn svg { width: 18px; height: 14px; }
+
+        .community-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+
+        .community-feature {
+          display: block;
+          margin: 0 auto 28px;
+          max-width: 980px;
+          border: 1px solid var(--border);
+          overflow: hidden;
+        }
+
+        .community-feature-image {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        .comm-pill {
+          font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.22em;
+          text-transform: uppercase; padding: 6px 14px;
+          border: 1px solid var(--border); color: var(--text-dim);
+          transition: all 0.2s;
+        }
+
+        .comm-pill:hover { border-color: rgba(224,64,251,0.3); color: var(--text-muted); }
+
+        #shop {
+          position: relative; padding: 100px 0;
+          border-top: 1px solid var(--border);
+        }
+
+        .shop-header {
+          display: flex; align-items: flex-end; justify-content: space-between;
+          margin-bottom: 48px; gap: 20px;
+        }
+
+        @media(max-width:700px){ .shop-header { flex-direction: column; align-items: flex-start; } }
+
+        .shop-h2 {
+          font-family: var(--font-display); font-size: clamp(38px, 5vw, 64px);
+          text-transform: uppercase; color: var(--white); line-height: 0.93;
+          letter-spacing: 0.02em;
+        }
+
+        .shop-h2 span { color: rgba(240,240,248,0.3); }
+
+        .shop-note {
+          font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
+          text-transform: uppercase; color: var(--accent);
+          border: 1px solid rgba(224,64,251,0.2); padding: 6px 12px;
+          background: var(--accent-dim);
+        }
+
+        .shop-actions { display:flex; align-items:center; gap:12px; }
+
+        .merch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 36px; }
+        @media(max-width:700px){ .merch-grid { grid-template-columns: 1fr; gap: 12px; } }
+
+        .merch-card {
+          border: 1px solid var(--border); background: var(--surface);
+          overflow: hidden; cursor: pointer;
+          transition: border-color 0.3s, transform 0.3s var(--ease);
+          border-radius: var(--radius);
+          display: block;
+        }
+
+        .merch-card:hover { border-color: var(--border-strong); transform: translateY(-4px); }
+
+        .merch-visual {
+          aspect-ratio: 1; background: var(--surface2); position: relative;
+          display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+
+        .merch-visual-letter {
+          font-family: var(--font-display); font-size: 100px; color: rgba(255,255,255,0.04);
+          letter-spacing: -0.02em; transition: color 0.3s;
+          position: relative;
+          z-index: 2;
+        }
+
+        .merch-card:hover .merch-visual-letter { color: rgba(255,255,255,0.07); }
+
+        .merch-image {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0.92;
+        }
+
+        .merch-tag {
+          position: absolute; top: 10px; left: 10px;
+          font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.2em;
+          text-transform: uppercase; padding: 4px 8px;
+          background: rgba(224,64,251,0.15); border: 1px solid rgba(224,64,251,0.3); color: var(--accent);
+        }
+
+        .merch-info { padding: 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+        .merch-name { font-weight: 600; font-size: 14px; color: var(--white); margin-bottom: 2px; }
+        .merch-brand { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; }
+        .merch-price { font-family: var(--font-display); font-size: 20px; color: var(--white); }
+
+        #work {
+          position: relative; padding: 100px 0;
+          background: var(--surface); border-top: 1px solid var(--border); overflow: hidden;
+        }
+
+        #work .glow-1 {
+          width: 500px; height: 500px;
+          background: radial-gradient(circle, var(--accent2) 0%, transparent 70%);
+          opacity: 0.06; top: 20%; left: -10%;
+        }
+
+        .work-shell { position: relative; z-index: 2; }
+
+        .work-header {
+          display: flex; align-items: flex-end; justify-content: space-between;
+          margin-bottom: 56px; gap: 20px;
+        }
+
+        @media(max-width:700px){ .work-header { flex-direction: column; align-items: flex-start; } }
+
+        .work-h2 {
+          font-family: var(--font-display); font-size: clamp(40px, 5vw, 72px);
+          text-transform: uppercase; color: var(--white); line-height: 0.93;
+          letter-spacing: 0.02em;
+        }
+
+        .work-h2 span { color: rgba(240,240,248,0.3); display: block; }
+
+        .campaigns-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        @media(max-width:900px){ .campaigns-grid { grid-template-columns: 1fr; } }
+
+        .campaign-card {
+          border: 1px solid var(--border); background: var(--bg);
+          padding: 28px; position: relative; overflow: hidden;
+          cursor: pointer; transition: border-color 0.3s, background 0.3s;
+          display: flex; flex-direction: column; gap: 14px;
+          border-radius: var(--radius);
+        }
+
+        .campaign-image {
+          width: calc(100% + 56px);
+          height: auto;
+          margin: -28px -28px 18px;
+          display: block;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .campaign-card:hover { border-color: rgba(224,64,251,0.25); background: var(--surface2); }
+
+        .campaign-card::before {
+          content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+          background: var(--accent); transform: scaleX(0); transform-origin: left;
+          transition: transform 0.5s var(--ease);
+        }
+
+        .campaign-card:hover::before { transform: scaleX(1); }
+
+        .campaign-cat { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .campaign-year { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; }
+
+        .campaign-title {
+          font-family: var(--font-display); font-size: 30px; text-transform: uppercase;
+          color: var(--white); letter-spacing: 0.03em; line-height: 1;
+        }
+
+        .campaign-desc { font-size: 13px; color: var(--text-muted); line-height: 1.75; flex: 1; }
+
+        .campaign-outcomes {
+          padding-top: 14px; border-top: 1px solid var(--border);
+          font-family: var(--font-mono); font-size: 10px; color: var(--text-dim);
+          letter-spacing: 0.06em; line-height: 1.6;
+        }
+
+        .campaign-arrow {
+          font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em;
+          text-transform: uppercase; color: rgba(224,64,251,0); display: flex;
+          align-items: center; gap: 6px; transition: all 0.3s;
+        }
+
+        .campaign-card:hover .campaign-arrow { color: var(--accent); }
+
+        #leadership {
+          position: relative; padding: 100px 0;
+          border-top: 1px solid var(--border);
+        }
+
+        .leadership-h2 {
+          font-family: var(--font-display); font-size: clamp(38px, 5vw, 64px);
+          text-transform: uppercase; color: var(--white); line-height: 0.93;
+          letter-spacing: 0.02em; margin-bottom: 52px;
+        }
+
+        .leadership-h2 span { color: rgba(240,240,248,0.3); }
+        .team-people-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        @media(max-width:900px){ .team-people-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width:480px){ .team-people-grid { grid-template-columns: 1fr; } }
+
+        .person-card {
+          border: 1px solid var(--border); background: var(--surface);
+          padding: 24px; transition: border-color 0.3s, background 0.3s;
+          border-radius: var(--radius);
+          display: block;
+        }
+
+        .person-image {
+          width: calc(100% + 48px);
+          height: auto;
+          margin: -24px -24px 16px;
+          display: block;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .person-card:hover { border-color: var(--border-strong); background: var(--surface2); }
+
+        .person-avatar {
+          width: 52px; height: 52px; border-radius: 50%;
+          background: var(--surface2); border: 1px solid var(--border);
+          display: flex; align-items: center; justify-content: center;
+          font-family: var(--font-display); font-size: 20px; color: var(--text-dim);
+          margin-bottom: 14px; transition: border-color 0.3s;
+        }
+
+        .person-card:hover .person-avatar { border-color: rgba(224,64,251,0.3); }
+        .person-role { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+        .person-name { font-family: var(--font-display); font-size: 22px; text-transform: uppercase; color: var(--white); letter-spacing: 0.04em; line-height: 1; margin-bottom: 4px; }
+        .person-dept { font-size: 12px; color: var(--text-dim); }
+
+        #footer {
+          background: var(--surface); border-top: 1px solid var(--border); padding: 72px 0 32px;
+        }
+
+        .footer-grid {
+          display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 64px;
+        }
+
+        @media(max-width:900px){ .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; } }
+        @media(max-width:560px){ .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
+
+        .footer-logo { margin-bottom: 16px; }
+
+        .footer-brand {
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .footer-logo-icon {
+          width: 74px;
+          height: auto;
+          display: block;
+        }
+        .footer-tagline { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 240px; margin-bottom: 24px; }
+        .footer-socials { display: flex; gap: 8px; }
+
+        .social-btn {
+          width: 34px; height: 34px; border: 1px solid var(--border);
+          display: flex; align-items: center; justify-content: center;
+          font-family: var(--font-mono); font-size: 10px; color: var(--text-dim);
+          transition: all 0.2s; cursor: pointer; background: none; border-radius: var(--radius);
+        }
+
+        .social-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .footer-col-title { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 18px; }
+        .footer-links { display: flex; flex-direction: column; gap: 10px; }
+        .footer-links a { font-size: 13px; color: var(--text-muted); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-contact { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+        .footer-contact a { color: var(--accent); font-size: 12px; font-family: var(--font-mono); }
+        .footer-contact a:hover { color: var(--text); }
+        .footer-join-btn { font-size: 12px; padding: 9px 16px; margin-top: 8px; display: inline-flex; }
+
+        .footer-bottom {
+          padding-top: 28px; border-top: 1px solid var(--border);
+          display: flex; align-items: center; justify-content: space-between; gap: 16px;
+          flex-wrap: wrap;
+        }
+
+        .footer-copy {
+          font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em;
+          text-transform: uppercase; color: var(--text-dim);
+        }
+
+        .footer-made {
+          font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
+          text-transform: uppercase; color: var(--text-dim);
+        }
+
+        #scroll-bar {
+          position: fixed; top: 0; left: 0; height: 2px; background: var(--accent);
+          z-index: 200; transition: width 0.05s linear;
+        }
+
+        #cursor {
+          position: fixed; width: 6px; height: 6px; border-radius: 50%;
+          background: var(--accent); pointer-events: none; z-index: 9999;
+          transform: translate(-50%,-50%); transition: transform 0.1s, opacity 0.3s;
+          mix-blend-mode: screen;
+        }
+
+        @media(hover:none){ #cursor { display: none; } }
+
+        @media (prefers-reduced-motion: reduce) {
+          html { scroll-behavior: auto; }
+          *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+          .reveal { opacity: 1; transform: none; }
+          .ticker-inner { animation: none; }
+          #cursor { display: none; }
+        }
+      `}</style>
+    </>
+  );
+}

@@ -1,0 +1,21 @@
+<svg width="1200" height="840" viewBox="0 0 1200 840" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="840" fill="#0C0C11"/>
+  <circle cx="240" cy="228" r="94" fill="#141420"/>
+  <circle cx="600" cy="180" r="112" fill="#171723"/>
+  <circle cx="920" cy="256" r="88" fill="#141420"/>
+  <circle cx="312" cy="586" r="120" fill="#171723"/>
+  <circle cx="654" cy="608" r="146" fill="#141420"/>
+  <circle cx="956" cy="554" r="102" fill="#171723"/>
+  <path d="M240 228L600 180L920 256L654 608L312 586L240 228Z" stroke="rgba(224,64,251,0.28)" stroke-width="2"/>
+  <path d="M240 228L312 586L654 608" stroke="rgba(240,240,248,0.16)" stroke-width="2"/>
+  <path d="M600 180L654 608" stroke="rgba(240,240,248,0.16)" stroke-width="2"/>
+  <path d="M920 256L654 608" stroke="rgba(240,240,248,0.16)" stroke-width="2"/>
+  <circle cx="240" cy="228" r="14" fill="#E040FB"/>
+  <circle cx="600" cy="180" r="14" fill="#F0F0F8"/>
+  <circle cx="920" cy="256" r="14" fill="#E040FB"/>
+  <circle cx="312" cy="586" r="14" fill="#F0F0F8"/>
+  <circle cx="654" cy="608" r="14" fill="#E040FB"/>
+  <circle cx="956" cy="554" r="14" fill="#F0F0F8"/>
+  <text x="72" y="776" fill="#F0F0F8" font-family="Arial, sans-serif" font-size="66" font-weight="700">350+ creators</text>
+  <text x="74" y="820" fill="#E040FB" font-family="Arial, sans-serif" font-size="32" letter-spacing="4">CONNECTED THROUGH ONE CLUB</text>
+</svg>
