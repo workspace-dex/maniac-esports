@@ -963,6 +963,9 @@ export default function HomePage() {
             <div className="footer-bottom">
               <span className="footer-copy">© 2025 Maniac Esports. All Rights Reserved.</span>
               <span className="footer-made">Built for the community · India</span>
+              <span className="footer-developed">
+                Developed by <a href="https://github.com/workspace-dex" target="_blank" rel="noreferrer">Shakib S.</a> ♥️
+              </span>
             </div>
           </div>
         </footer>
@@ -1018,7 +1021,7 @@ export default function HomePage() {
         #navbar{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;transition:background 0.3s,border-color 0.3s;border-bottom:1px solid transparent}
         #navbar.scrolled{background:rgba(6,6,8,0.92);backdrop-filter:blur(16px);border-color:var(--border)}
         #navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}
-        .nav-logo{display:inline-flex;align-items:center;justify-content:center}.nav-logo-icon{width:64px;height:auto;display:block}
+        .nav-logo{display:inline-flex;align-items:center;justify-content:center}.nav-logo-icon{width:64px;height:auto;display:block;filter:brightness(0) invert(1)}
         .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
         .nav-links a{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);transition:color 0.2s;font-weight:500}
         .nav-links a:hover{color:var(--white)}.nav-links a.active{color:var(--accent)}
@@ -1324,7 +1327,7 @@ export default function HomePage() {
         @media(max-width:560px){.footer-grid{grid-template-columns:1fr;gap:28px}}
         .footer-logo{margin-bottom:16px}
         .footer-brand{display:inline-flex;align-items:center}
-        .footer-logo-icon{width:74px;height:auto;display:block}
+        .footer-logo-icon{width:74px;height:auto;display:block;filter:brightness(0) invert(1)}
         .footer-tagline{font-size:13px;color:var(--text-muted);line-height:1.7;max-width:240px;margin-bottom:24px}
         .footer-socials{display:flex;gap:8px}
         .social-btn{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-dim);transition:all 0.2s;cursor:pointer;background:none;border-radius:var(--radius)}
@@ -1340,6 +1343,9 @@ export default function HomePage() {
         .footer-bottom{padding-top:28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
         .footer-copy{font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim)}
         .footer-made{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim)}
+        .footer-developed{font-family:var(--font-mono);font-size:10px;letter-spacing:0.05em;color:var(--text-dim)}
+        .footer-developed a{color:var(--text-muted);text-decoration:none;transition:color 0.2s}
+        .footer-developed a:hover{color:var(--accent)}
 
         /* ── Scroll / Cursor ── */
         #scroll-bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:200;transition:width 0.05s linear}
