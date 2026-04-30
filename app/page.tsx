@@ -1376,8 +1376,10 @@ export default function HomePage() {
         @media(max-width:900px){.team-people-grid{grid-template-columns:repeat(2,1fr)}}
         @media(max-width:480px){.team-people-grid{grid-template-columns:1fr}}
         .team-ig-cta{display:flex;justify-content:center;margin-top:20px}
-        .person-card{border:1px solid var(--border);background:var(--surface);padding:24px;transition:border-color 0.3s,background 0.3s;border-radius:var(--radius);display:block}
-        .person-image{width:calc(100% + 48px);height:180px;margin:-24px -24px 16px;display:block;border-bottom:1px solid var(--border);object-fit:cover;object-position:center}
+        .person-card{border:1px solid var(--border);background:var(--surface);padding:16px;transition:border-color 0.3s,background 0.3s;border-radius:var(--radius);display:block;overflow:hidden}
+        @media(max-width:480px){.person-card{padding:12px}}
+        .person-image{width:100%;height:180px;display:block;border-bottom:1px solid var(--border);object-fit:cover;object-position:center}
+        @media(max-width:480px){.person-image{height:140px}}
         .person-card:hover{border-color:var(--border-strong);background:var(--surface2)}
         .person-avatar{width:52px;height:52px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:20px;color:var(--text-dim);margin-bottom:14px;transition:border-color 0.3s}
         .person-card:hover .person-avatar{border-color:rgba(224,64,251,0.3)}
