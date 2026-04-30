@@ -360,9 +360,9 @@ const campaigns: CampaignItem[] = [
 const people: PersonItem[] = [
   { avatar: "RS", role: "Founder", name: "Rajdip Sarkar", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/rajdip.png" },
   { avatar: "NK", role: "Co-Founder", name: "Nitin Kumar", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/nitin.png" },
+  { avatar: "SS", role: "Technical Lead", name: "Shakib S.", handle: "", href: "https://github.com/workspace-dex", image: "/images/people/shakib.png" },
   { avatar: "DH", role: "COO", name: "Damodar Hegde", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/damodar.png" },
   { avatar: "RJ", role: "Brand Director", name: "Roshan Jakhar", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/roshan.png" },
-  { avatar: "SS", role: "Technical Lead", name: "Shakib S.", handle: "", href: "https://github.com/workspace-dex", image: "/images/people/shakib.png" },
   { avatar: "RV", role: "Sr. Community Manager", name: "Rahul Vyas", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/rahul.png" },
   { avatar: "AB", role: "Community Manager", name: "Ansh Bhardwaj", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/ansh.png" },
   { avatar: "DV", role: "Marketing PR Analyst", name: "Devansh", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/devansh.png" },
@@ -1019,7 +1019,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="footer-bottom">
-              <span className="footer-copy">© 2026 Maniac Esports. All Rights Reserved.</span>
+              <span className="footer-copy">© 2025 Maniac Esports. All Rights Reserved.</span>
               <span className="footer-made">Built for the community · India</span>
               <span className="footer-developed">
                 Developed by <a href="https://github.com/workspace-dex" target="_blank" rel="noreferrer">Shakib S.</a> ♥️
@@ -1306,8 +1306,8 @@ export default function HomePage() {
         .merch-lock-title{font-family:var(--font-display);font-size:clamp(28px,4vw,42px);text-transform:uppercase;color:var(--white);letter-spacing:0.04em}
         .merch-lock-sub{font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted)}
         .merch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:0}
-        @media(max-width:700px){.merch-grid{grid-template-columns:1fr}}
-        .merch-card{border:1px solid var(--border);background:var(--surface);overflow:hidden;border-radius:var(--radius);display:block}
+        @media(max-width:700px){.merch-grid{display:flex;flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;padding-bottom:8px;-webkit-overflow-scrolling:touch}}
+        @media(max-width:700px){.merch-card{min-width:200px;flex-snap-align:center;border:1px solid var(--border);background:var(--surface);overflow:hidden;border-radius:var(--radius);display:block}}
         .merch-visual{aspect-ratio:1;background:var(--surface2);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
         .merch-visual-letter{font-family:var(--font-display);font-size:100px;color:rgba(255,255,255,0.04);letter-spacing:-0.02em;position:relative;z-index:2}
         .merch-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.92}
