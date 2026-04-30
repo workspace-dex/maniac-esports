@@ -1374,12 +1374,12 @@ export default function HomePage() {
         /* 4+3 layout for 7 members */
         .team-people-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
         @media(max-width:900px){.team-people-grid{grid-template-columns:repeat(2,1fr)}}
-        @media(max-width:480px){.team-people-grid{grid-template-columns:1fr}}
+        @media(max-width:480px){.team-people-grid{grid-template-columns:repeat(2,1fr)}}
         .team-ig-cta{display:flex;justify-content:center;margin-top:20px}
         .person-card{border:1px solid var(--border);background:var(--surface);padding:16px;transition:border-color 0.3s,background 0.3s;border-radius:var(--radius);display:block;overflow:hidden}
-        @media(max-width:480px){.person-card{padding:12px}}
+        @media(max-width:480px){.person-card{padding:10px}}
         .person-image{width:100%;height:180px;display:block;border-bottom:1px solid var(--border);object-fit:cover;object-position:center}
-        @media(max-width:480px){.person-image{height:140px}}
+        @media(max-width:480px){.person-image{height:100px}}
         .person-card:hover{border-color:var(--border-strong);background:var(--surface2)}
         .person-avatar{width:52px;height:52px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:20px;color:var(--text-dim);margin-bottom:14px;transition:border-color 0.3s}
         .person-card:hover .person-avatar{border-color:rgba(224,64,251,0.3)}
