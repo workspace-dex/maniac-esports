@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import type { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/next";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -47,7 +48,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-canvas font-sans text-white antialiased">{children}</body>
+      <body className="bg-canvas font-sans text-white antialiased">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
