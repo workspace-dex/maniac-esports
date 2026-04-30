@@ -1019,7 +1019,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="footer-bottom">
-              <span className="footer-copy">© 2025 Maniac Esports. All Rights Reserved.</span>
+              <span className="footer-copy">© 2026 Maniac Esports. All Rights Reserved.</span>
               <span className="footer-made">Built for the community · India</span>
               <span className="footer-developed">
                 Developed by <a href="https://github.com/workspace-dex" target="_blank" rel="noreferrer">Shakib S.</a> ♥️
