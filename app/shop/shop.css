@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap");
+
+.shop-page {
+  min-height: 100vh;
+  background: #060608;
+  color: #f0f0f8;
+  padding-bottom: 80px;
+}
+
+.shop-hero {
+  position: relative;
+  padding: 120px 0 80px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.shop-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(224, 64, 251, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(224, 64, 251, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.shop-hero-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(224, 64, 251, 0.15) 0%, transparent 70%);
+  filter: blur(80px);
+}
+
+.shop-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(240, 240, 248, 0.5);
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.shop-back:hover {
+  color: #ff29ea;
+}
+
+.shop-back svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s;
+}
+
+.shop-back:hover svg {
+  transform: translateX(-3px);
+}
+
+.shop-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(56px, 10vw, 96px);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.shop-subtitle {
+  font-family: "DM Mono", monospace;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240, 240, 248, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+.shop-section {
+  padding: 80px 0;
+}
+
+.shop-section .section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.shop-section .section-header h2 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 40px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.shop-section .section-header p {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: rgba(240, 240, 248, 0.5);
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.shop-card {
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 2px;
+  overflow: hidden;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.shop-card:hover {
+  border-color: var(--card-color, rgba(224, 64, 251, 0.4));
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-4px);
+}
+
+.shop-card-visual {
+  aspect-ratio: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #0f0f15;
+}
+
+.shop-card-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--card-color, rgba(224, 64, 251, 0.2)) 0%, transparent 70%);
+  opacity: 0.5;
+}
+
+.shop-card-visual svg {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  z-index: 2;
+}
+
+.shop-card-info {
+  padding: 20px;
+}
+
+.shop-card-name {
+  font-family: "Syne", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.shop-card-desc {
+  font-size: 13px;
+  color: rgba(240, 240, 248, 0.6);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.shop-card-category {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--card-color, #ff29ea);
+}
+
+.merch-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.merch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .merch-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .merch-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.merch-card {
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: #0f0f15;
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0.7;
+  position: relative;
+}
+
+.merch-card.out-of-stock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.merch-visual {
+  position: relative;
+}
+
+.merch-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.out-of-stock-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 59, 59, 0.9);
+  color: white;
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 2px;
+}
+
+.merch-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.merch-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.merch-price {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.merch-notice {
+  text-align: center;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  color: #ff29ea;
+  margin-top: 32px;
+  letter-spacing: 0.1em;
+}
+
+.shop-cta {
+  padding: 48px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  text-align: center;
+}
+
+.shop-cta p {
+  font-size: 14px;
+  color: rgba(240, 240, 248, 0.6);
+  margin-bottom: 20px;
+}
+
+.shop-cta .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: #5865F2;
+  color: white;
+  font-family: "Syne", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.shop-cta .btn:hover {
+  background: #4752C4;
+  transform: translateY(-2px);
+}
+
+.shop-cta .btn svg {
+  width: 16px;
+  height: 16px;
+}

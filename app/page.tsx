@@ -191,16 +191,58 @@ const SteamIcon = () => (
   </svg>
 );
 
+const GenesisCrystalsIcon = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="56" height="56">
+    <defs>
+      <linearGradient id="gc1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#5B8DEF"/>
+        <stop offset="100%" stopColor="#3B6FD3"/>
+      </linearGradient>
+    </defs>
+    <circle cx="40" cy="40" r="34" fill="url(#gc1)" stroke="#7BA4FF" strokeWidth="1.5"/>
+    {/* Crystal shape */}
+    <path d="M40 16 L52 32 L48 50 L32 50 L28 32 Z" fill="white" opacity="0.9"/>
+    <path d="M40 20 L48 32 L44 46 L36 46 L32 32 Z" fill="#5B8DEF" opacity="0.5"/>
+    <text x="40" y="66" textAnchor="middle" fill="white" fontSize="6" fontFamily="monospace" opacity="0.7">GENESIS</text>
+  </svg>
+);
+
+const MinecoinsIcon = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="56" height="56">
+    <defs>
+      <linearGradient id="mc1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#62B47A"/>
+        <stop offset="100%" stopColor="#3D8B52"/>
+      </linearGradient>
+    </defs>
+    <circle cx="40" cy="40" r="34" fill="url(#mc1)" stroke="#8ED4A6" strokeWidth="1.5"/>
+    {/* Minecraft block simplified */}
+    <rect x="22" y="22" width="36" height="36" rx="4" fill="white" opacity="0.9"/>
+    <rect x="26" y="26" width="12" height="12" fill="#62B47A"/>
+    <rect x="42" y="26" width="12" height="12" fill="#8ED4A6"/>
+    <rect x="26" y="42" width="12" height="12" fill="#8ED4A6"/>
+    <rect x="42" y="42" width="12" height="12" fill="#62B47A"/>
+    <text x="40" y="68" textAnchor="middle" fill="white" fontSize="5" fontFamily="monospace" opacity="0.7">COINS</text>
+  </svg>
+);
+
+const DiamondsIcon = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="56" height="56">
+    <defs>
+      <linearGradient id="dm1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#3B82F6"/>
+        <stop offset="100%" stopColor="#1D4ED8"/>
+      </linearGradient>
+    </defs>
+    <circle cx="40" cy="40" r="34" fill="url(#dm1)" stroke="#60A5FA" strokeWidth="1.5"/>
+    {/* Diamond shape */}
+    <path d="M40 14 L56 40 L40 66 L24 40 Z" fill="white" opacity="0.95"/>
+    <path d="M40 22 L50 40 L40 58 L30 40 Z" fill="#3B82F6" opacity="0.6"/>
+    <text x="40" y="72" textAnchor="middle" fill="white" fontSize="6" fontFamily="monospace" opacity="0.8">DM</text>
+  </svg>
+);
+
 const currencies: CurrencyItem[] = [
-  {
-    game: "Fortnite",
-    currency: "V-Bucks",
-    color: "#1AABFF",
-    glow: "rgba(26,171,255,0.25)",
-    packs: [{ label: "1,000", price: "₹799" }, { label: "2,800", price: "₹1,999" }, { label: "5,000+", price: "₹3,499" }],
-    icon: <VBucksIcon />,
-    href: "https://discord.gg/USk65pEe8H",
-  },
   {
     game: "BGMI",
     currency: "Unknown Cash",
@@ -208,7 +250,34 @@ const currencies: CurrencyItem[] = [
     glow: "rgba(255,140,0,0.25)",
     packs: [{ label: "60 UC", price: "₹79" }, { label: "325 UC", price: "₹399" }, { label: "1,800 UC", price: "₹1,999" }],
     icon: <UCIcon />,
-    href: "https://discord.gg/USk65pEe8H",
+    href: "https://discord.com/channels/692965277532684289/1446866325463896154",
+  },
+  {
+    game: "Genshin Impact",
+    currency: "Genesis Crystals",
+    color: "#5B8DEF",
+    glow: "rgba(91,141,239,0.25)",
+    packs: [{ label: "80 GC", price: "₹399" }, { label: "400 GC", price: "₹1,599" }, { label: "2,000 GC", price: "₹6,999" }],
+    icon: <GenesisCrystalsIcon />,
+    href: "https://discord.com/channels/692965277532684289/1446866325463896154",
+  },
+  {
+    game: "Minecraft",
+    currency: "Minecoins",
+    color: "#62B47A",
+    glow: "rgba(98,180,122,0.25)",
+    packs: [{ label: "500 MC", price: "₹299" }, { label: "1,720 MC", price: "₹799" }, { label: "4,500 MC", price: "₹1,799" }],
+    icon: <MinecoinsIcon />,
+    href: "https://discord.com/channels/692965277532684289/1446866325463896154",
+  },
+  {
+    game: "Mobile Legends",
+    currency: "Diamonds",
+    color: "#3B82F6",
+    glow: "rgba(59,130,246,0.25)",
+    packs: [{ label: "70 DM", price: "₹399" }, { label: "340 DM", price: "₹1,499" }, { label: "1,710 DM", price: "₹6,499" }],
+    icon: <DiamondsIcon />,
+    href: "https://discord.com/channels/692965277532684289/1446866325463896154",
   },
   {
     game: "VALORANT",
@@ -217,34 +286,16 @@ const currencies: CurrencyItem[] = [
     glow: "rgba(255,70,85,0.25)",
     packs: [{ label: "475 VP", price: "₹399" }, { label: "1,000 VP", price: "₹799" }, { label: "2,150 VP", price: "₹1,599" }],
     icon: <ValorantPointsIcon />,
-    href: "https://discord.gg/USk65pEe8H",
-  },
-  {
-    game: "Roblox",
-    currency: "Robux",
-    color: "#E8282B",
-    glow: "rgba(232,40,43,0.25)",
-    packs: [{ label: "400 R$", price: "₹399" }, { label: "800 R$", price: "₹799" }, { label: "1,700 R$", price: "₹1,599" }],
-    icon: <RobuxIcon />,
-    href: "https://discord.gg/USk65pEe8H",
-  },
-  {
-    game: "BGMI",
-    currency: "Royale Pass",
-    color: "#00D4AA",
-    glow: "rgba(0,212,170,0.25)",
-    packs: [{ label: "Elite Pass", price: "₹299" }, { label: "Elite+ Pass", price: "₹799" }, { label: "C3 Royale Pass", price: "₹1,999" }],
-    icon: <BGMIStarsIcon />,
-    href: "https://discord.gg/USk65pEe8H",
+    href: "https://discord.com/channels/692965277532684289/1446866325463896154",
   },
   {
     game: "Steam",
-    currency: "Wallet Codes",
+    currency: "Steam Wallet (INR)",
     color: "#C6D4DF",
     glow: "rgba(198,212,223,0.2)",
     packs: [{ label: "₹500", price: "₹525" }, { label: "₹1,000", price: "₹1,050" }, { label: "₹2,000", price: "₹2,099" }],
     icon: <SteamIcon />,
-    href: "https://discord.gg/USk65pEe8H",
+    href: "https://discord.com/channels/692965277532684289/1446866325463896154",
   },
 ];
 
@@ -307,13 +358,15 @@ const campaigns: CampaignItem[] = [
 ];
 
 const people: PersonItem[] = [
-  { avatar: "NK", role: "Co-Founder", name: "Nitin Kumar", handle: "Batman", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/nitin.svg" },
-  { avatar: "DH", role: "COO", name: "Damodar Hegde", handle: "Synper", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/damodar.svg" },
-  { avatar: "RJ", role: "Brand Director", name: "Roshan Jakhar", handle: "Vulture", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/roshan.svg" },
-  { avatar: "RV", role: "Sr. Community Manager", name: "Rahul Vyas", handle: "Rahul", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/rahul.svg" },
-  { avatar: "AB", role: "Community Manager", name: "Ansh Bhardwaj", handle: "Ansh", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/ansh.svg" },
-  { avatar: "DV", role: "Marketing PR Analyst", name: "Devansh", handle: "Devansh", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/devansh.svg" },
-  { avatar: "SB", role: "Production Lead", name: "Shubham Biswas", handle: "Shubham", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/shubham.svg" },
+  { avatar: "RS", role: "Founder", name: "Rajdip Sarkar", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/rajdip.svg" },
+  { avatar: "NK", role: "Co-Founder", name: "Nitin Kumar", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/nitin.svg" },
+  { avatar: "DH", role: "COO", name: "Damodar Hegde", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/damodar.svg" },
+  { avatar: "RJ", role: "Brand Director", name: "Roshan Jakhar", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/roshan.svg" },
+  { avatar: "SS", role: "Technical Lead", name: "Shakib S.", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/shakib.svg" },
+  { avatar: "RV", role: "Sr. Community Manager", name: "Rahul Vyas", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/rahul.svg" },
+  { avatar: "AB", role: "Community Manager", name: "Ansh Bhardwaj", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/ansh.svg" },
+  { avatar: "DV", role: "Marketing PR Analyst", name: "Devansh", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/devansh.svg" },
+  { avatar: "SB", role: "Production Lead", name: "Shubham Biswas", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/shubham.svg" },
 ];
 
 const tickerItems = ["BGMI","·","Valorant","·","CS2","·","Creator Campaigns","·","Brand Activations","·","Community Events","·","350+ Creators","·","Maniac Esports","·","India's Gaming Generation","·"];
@@ -742,14 +795,14 @@ export default function HomePage() {
               <h2 id="community-title" className="community-h2 reveal reveal-delay-1">Community Isn&apos;t a Feature.<em>It&apos;s the Brand.</em></h2>
               <p className="community-sub reveal reveal-delay-2">10,000+ members. Active Discord. Weekly scrims and tournaments. Creator drops, watch parties, and a club mentality that shows up on and off the server.</p>
               <div className="community-ctas reveal reveal-delay-3">
-                <a href="https://discord.gg/USk65pEe8H" target="_blank" rel="noreferrer" className="discord-btn">
+                <a href="https://discord.com/channels/692965277532684289/1446866325463896154" target="_blank" rel="noreferrer" className="discord-btn">
                   <svg viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M15.25 1.5A15.3 15.3 0 0 0 11.5.5a10.5 10.5 0 0 0-.5 1A14.2 14.2 0 0 0 5 1.5a10.5 10.5 0 0 0-.5-1A15.3 15.3 0 0 0 .75 1.5C-.5 5.5-.25 9.4 1 12c1.25.9 2.5 1.5 3.75 1.5l.75-1a10 10 0 0 1-2.25-1c.2-.15.4-.3.55-.45a10.9 10.9 0 0 0 9.4 0c.15.15.35.3.55.45A10 10 0 0 1 11.5 12.5l.75 1C13.5 13.5 14.75 12.9 16 12c1.25-2.6 1.5-6.5.25-10.5Z" fill="currentColor"/></svg>
                   Join Discord
                 </a>
                 <a href="https://www.instagram.com/maniacesports.in/" target="_blank" rel="noreferrer" className="btn btn-primary">BeManiac</a>
                 <a href="#work" className="btn btn-ghost">View Events</a>
               </div>
-              <a href="https://discord.gg/USk65pEe8H" target="_blank" rel="noreferrer" className="community-feature reveal reveal-delay-4">
+              <a href="https://discord.com/channels/692965277532684289/1446866325463896154" target="_blank" rel="noreferrer" className="community-feature reveal reveal-delay-4">
                 <img src="/images/community-banner.svg" alt="Maniac Esports community" className="community-feature-image" loading="lazy" decoding="async" />
               </a>
               <div className="community-pills reveal reveal-delay-4">
@@ -901,7 +954,7 @@ export default function HomePage() {
                   <div className="person-avatar">{person.avatar}</div>
                   <div className="person-role">{person.role}</div>
                   <div className="person-name">{person.name}</div>
-                  <div className="person-handle">— {person.handle}</div>
+                  {person.handle && <div className="person-handle">— {person.handle}</div>}
                 </a>
               ))}
             </div>
@@ -935,7 +988,7 @@ export default function HomePage() {
                     <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
                   </a>
                   {/* Discord */}
-                  <a className="social-btn" title="Discord" href="https://discord.gg/USk65pEe8H" target="_blank" rel="noreferrer" aria-label="Discord">
+                  <a className="social-btn" title="Discord" href="https://discord.com/channels/692965277532684289/1446866325463896154" target="_blank" rel="noreferrer" aria-label="Discord">
                     <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15" aria-hidden="true"><path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963.021-.04.001-.088-.041-.104a13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028zM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38z"/></svg>
                   </a>
                 </div>
@@ -1312,7 +1365,7 @@ export default function HomePage() {
         @media(max-width:480px){.team-people-grid{grid-template-columns:1fr}}
         .team-ig-cta{display:flex;justify-content:center;margin-top:20px}
         .person-card{border:1px solid var(--border);background:var(--surface);padding:24px;transition:border-color 0.3s,background 0.3s;border-radius:var(--radius);display:block}
-        .person-image{width:calc(100% + 48px);height:auto;margin:-24px -24px 16px;display:block;border-bottom:1px solid var(--border)}
+        .person-image{width:calc(100% + 48px);height:180px;margin:-24px -24px 16px;display:block;border-bottom:1px solid var(--border);object-fit:cover;object-position:center}
         .person-card:hover{border-color:var(--border-strong);background:var(--surface2)}
         .person-avatar{width:52px;height:52px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:20px;color:var(--text-dim);margin-bottom:14px;transition:border-color 0.3s}
         .person-card:hover .person-avatar{border-color:rgba(224,64,251,0.3)}
