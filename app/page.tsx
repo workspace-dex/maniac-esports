@@ -362,7 +362,7 @@ const people: PersonItem[] = [
   { avatar: "NK", role: "Co-Founder", name: "Nitin Kumar", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/nitin.png" },
   { avatar: "DH", role: "COO", name: "Damodar Hegde", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/damodar.png" },
   { avatar: "RJ", role: "Brand Director", name: "Roshan Jakhar", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/roshan.png" },
-  { avatar: "SS", role: "Technical Lead", name: "Shakib S.", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/shakib.png" },
+  { avatar: "SS", role: "Technical Lead", name: "Shakib S.", handle: "", href: "https://github.com/workspace-dex", image: "/images/people/shakib.png" },
   { avatar: "RV", role: "Sr. Community Manager", name: "Rahul Vyas", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/rahul.png" },
   { avatar: "AB", role: "Community Manager", name: "Ansh Bhardwaj", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/ansh.png" },
   { avatar: "DV", role: "Marketing PR Analyst", name: "Devansh", handle: "", href: "https://www.instagram.com/maniacesports.in/", image: "/images/people/devansh.png" },
